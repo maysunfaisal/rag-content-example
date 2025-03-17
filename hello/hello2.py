@@ -2,4 +2,4 @@
 # https://github.com/operatorequals/httpimport/
 
 def hello():
-  print("Hello world")
+  print("Hello2 world")
