@@ -116,6 +116,7 @@ def hello(repo: str, output_dir: str, topic_map_url: str, attributes_url: str) -
 #     return file_list
 
 if __name__ == "__main__":
+  print("hi")
     # parser = argparse.ArgumentParser(
     #     description="This command converts the openshift-docs assemblies to plain text.",
     #     usage="convert-it-all [options]",
