@@ -2,6 +2,9 @@
 red-hat-developers-documentation-rhdh
 rhdh-product-docs-plaintext
 
+#MacOS
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
