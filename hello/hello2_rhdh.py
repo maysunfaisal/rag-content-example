@@ -2,15 +2,15 @@
 
 """Utility script to convert OCP docs from adoc to plain text."""
 
-import argparse
-import os
-import subprocess
-import sys
-import shutil
-import requests
-import yaml
-from pathlib import Path
-from git import Repo
+# import argparse
+# import os
+# import subprocess
+# import sys
+# import shutil
+# import requests
+# import yaml
+# from pathlib import Path
+# from git import Repo
 
 
 # def node_in_distro(node: dict, distro: str) -> bool:
@@ -116,26 +116,26 @@ def hello(repo: str, output_dir: str, topic_map_url: str, attributes_url: str) -
 #     return file_list
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="This command converts the openshift-docs assemblies to plain text.",
-        usage="convert-it-all [options]",
-    )
+    # parser = argparse.ArgumentParser(
+    #     description="This command converts the openshift-docs assemblies to plain text.",
+    #     usage="convert-it-all [options]",
+    # )
 
-    # print(sysconfig.get_paths()["purelib"])
+    # # print(sysconfig.get_paths()["purelib"])
 
-    parser.add_argument(
-        "--repo",
-        "-r",
-        required=True,
-        help="repo to fetch",
-    )
-    parser.add_argument("--topic-map", "-t", required=True, help="The topic map file")
-    parser.add_argument(
-        "--output-dir", "-o", required=True, help="The output directory for text"
-    )
-    parser.add_argument(
-        "--attributes", "-a", help="An optional file containing attributes"
-    )
+    # parser.add_argument(
+    #     "--repo",
+    #     "-r",
+    #     required=True,
+    #     help="repo to fetch",
+    # )
+    # parser.add_argument("--topic-map", "-t", required=True, help="The topic map file")
+    # parser.add_argument(
+    #     "--output-dir", "-o", required=True, help="The output directory for text"
+    # )
+    # parser.add_argument(
+    #     "--attributes", "-a", help="An optional file containing attributes"
+    # )
 
-    args = parser.parse_args(sys.argv[1:])
-    hello(args.repo, args.output_dir, args.topic_map, args.attributes)
+    # args = parser.parse_args(sys.argv[1:])
+    # hello(args.repo, args.output_dir, args.topic_map, args.attributes)
