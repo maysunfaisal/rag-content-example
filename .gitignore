@@ -1,3 +1,7 @@
+#RHDH Docs Repo related
+red-hat-developers-documentation-rhdh
+rhdh-product-docs-plaintext
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
