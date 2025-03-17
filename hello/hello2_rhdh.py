@@ -102,18 +102,18 @@ def hello(repo: str, output_dir: str, topic_map_url: str, attributes_url: str) -
 
     # print(mega_file_list)
 
-def process_node(node: dict, dir: str = "", file_list: list = []) -> list:
-    """Process YAML node from the topic map."""
-    currentdir = dir
-    if "Topics" in node:
-        currentdir = os.path.join(currentdir, node["Dir"])
-        for subnode in node["Topics"]:
-            file_list = process_node(
-                subnode, dir=currentdir, file_list=file_list
-            )
-    else:
-        file_list.append(os.path.join(currentdir, node["File"]))
-    return file_list
+# def process_node(node: dict, dir: str = "", file_list: list = []) -> list:
+#     """Process YAML node from the topic map."""
+#     currentdir = dir
+#     if "Topics" in node:
+#         currentdir = os.path.join(currentdir, node["Dir"])
+#         for subnode in node["Topics"]:
+#             file_list = process_node(
+#                 subnode, dir=currentdir, file_list=file_list
+#             )
+#     else:
+#         file_list.append(os.path.join(currentdir, node["File"]))
+#     return file_list
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
