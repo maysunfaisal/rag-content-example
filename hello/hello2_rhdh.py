@@ -21,85 +21,86 @@ from git import Repo
 def hello(repo: str, output_dir: str, topic_map_url: str, attributes_url: str) -> None:
     """Process YAML node from the topic map."""
 
-    repo_dir = "red-hat-developers-documentation-rhdh"
-    topic_map = "rhdh_topic_map.yaml"
-    attributes = "rhdh_attributes.yaml"
+    print("Hello2 RHDH")
+    # repo_dir = "red-hat-developers-documentation-rhdh"
+    # topic_map = "rhdh_topic_map.yaml"
+    # attributes = "rhdh_attributes.yaml"
 
-    try:
-        repo_dir_path = Path(repo_dir)
-        if repo_dir_path.exists() and repo_dir_path.is_dir():
-            shutil.rmtree(repo_dir_path)
-        Repo.clone_from(repo, repo_dir, branch="main")
-    except Exception:
-        print("error deleting " + repo_dir + " and git cloning repository " + repo)
-        raise
+    # try:
+    #     repo_dir_path = Path(repo_dir)
+    #     if repo_dir_path.exists() and repo_dir_path.is_dir():
+    #         shutil.rmtree(repo_dir_path)
+    #     Repo.clone_from(repo, repo_dir, branch="main")
+    # except Exception:
+    #     print("error deleting " + repo_dir + " and git cloning repository " + repo)
+    #     raise
         
 
 
-    # urllib.request.urlretrieve(topic_map_url, topic_map)
-    # urllib.request.urlretrieve(attributes_url, attributes)
-    response = requests.get(topic_map_url)
-    if response.status_code == 200:
-        with open(topic_map, "wb") as file:
-            file.write(response.content)
-    else:
-        print("Failed to download file from " + topic_map_url)
+    # # urllib.request.urlretrieve(topic_map_url, topic_map)
+    # # urllib.request.urlretrieve(attributes_url, attributes)
+    # response = requests.get(topic_map_url)
+    # if response.status_code == 200:
+    #     with open(topic_map, "wb") as file:
+    #         file.write(response.content)
+    # else:
+    #     print("Failed to download file from " + topic_map_url)
 
-    response = requests.get(attributes_url)
-    if response.status_code == 200:
-        with open(attributes, "wb") as file:
-            file.write(response.content)
-    else:
-        print("Failed to download file from " + attributes_url)
+    # response = requests.get(attributes_url)
+    # if response.status_code == 200:
+    #     with open(attributes, "wb") as file:
+    #         file.write(response.content)
+    # else:
+    #     print("Failed to download file from " + attributes_url)
 
-    attribute_list: list = []
-    if attributes is not None:
-        # attributes = os.path.normpath(os.path.join(os.getcwd(), attributes))
-        with open(attributes, "r") as fin:
-            attributes = yaml.safe_load(fin)
-        for key, value in attributes.items():
-            attribute_list = [*attribute_list, "-a", key + "=%s" % value]
+    # attribute_list: list = []
+    # if attributes is not None:
+    #     # attributes = os.path.normpath(os.path.join(os.getcwd(), attributes))
+    #     with open(attributes, "r") as fin:
+    #         attributes = yaml.safe_load(fin)
+    #     for key, value in attributes.items():
+    #         attribute_list = [*attribute_list, "-a", key + "=%s" % value]
 
-    # topic_map = os.path.normpath(os.path.join(os.getcwd(), topic_map))
-    with open(topic_map, "r") as fin:
-        topic_map = yaml.safe_load_all(fin)
-        mega_file_list: list = []
-        for map in topic_map:
-            file_list: list = []
-            file_list = process_node(map, file_list=file_list)
-            mega_file_list = mega_file_list + file_list
+    # # topic_map = os.path.normpath(os.path.join(os.getcwd(), topic_map))
+    # with open(topic_map, "r") as fin:
+    #     topic_map = yaml.safe_load_all(fin)
+    #     mega_file_list: list = []
+    #     for map in topic_map:
+    #         file_list: list = []
+    #         file_list = process_node(map, file_list=file_list)
+    #         mega_file_list = mega_file_list + file_list
 
-    output_dir = os.path.normpath(output_dir)
-    os.makedirs(output_dir, exist_ok=True)
-    repo_dir = os.path.normpath(repo_dir)
-    file_dir = os.path.dirname(os.path.realpath(__file__))
+    # output_dir = os.path.normpath(output_dir)
+    # os.makedirs(output_dir, exist_ok=True)
+    # repo_dir = os.path.normpath(repo_dir)
+    # file_dir = os.path.dirname(os.path.realpath(__file__))
 
-    for filename in mega_file_list:
-        output_file = os.path.join(output_dir, filename + ".txt")
-        os.makedirs(os.path.dirname(os.path.realpath(output_file)), exist_ok=True)
-        input_file = os.path.join(repo_dir, filename + ".adoc")
-        converter_file = os.path.join(file_dir, "text-converter.rb")
-        print("Processing: " + input_file)
-        command = ["asciidoctor"]
-        command = command + attribute_list
-        command = [
-            *command,
-            "-r",
-            converter_file,
-            "-b",
-            "text",
-            "-o",
-            output_file,
-            "--trace",
-            "--quiet",
-            input_file,
-        ]
-        result = subprocess.run(command, check=False)  # noqa: S603
-        if result.returncode != 0:
-            print(result)
-            print(result.stdout)
+    # for filename in mega_file_list:
+    #     output_file = os.path.join(output_dir, filename + ".txt")
+    #     os.makedirs(os.path.dirname(os.path.realpath(output_file)), exist_ok=True)
+    #     input_file = os.path.join(repo_dir, filename + ".adoc")
+    #     converter_file = os.path.join(file_dir, "text-converter.rb")
+    #     print("Processing: " + input_file)
+    #     command = ["asciidoctor"]
+    #     command = command + attribute_list
+    #     command = [
+    #         *command,
+    #         "-r",
+    #         converter_file,
+    #         "-b",
+    #         "text",
+    #         "-o",
+    #         output_file,
+    #         "--trace",
+    #         "--quiet",
+    #         input_file,
+    #     ]
+    #     result = subprocess.run(command, check=False)  # noqa: S603
+    #     if result.returncode != 0:
+    #         print(result)
+    #         print(result.stdout)
 
-    print(mega_file_list)
+    # print(mega_file_list)
 
 def process_node(node: dict, dir: str = "", file_list: list = []) -> list:
     """Process YAML node from the topic map."""
@@ -137,4 +138,4 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args(sys.argv[1:])
-    convert_to_txt(args.repo, args.output_dir, args.topic_map, args.attributes)
+    hello(args.repo, args.output_dir, args.topic_map, args.attributes)
