@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Utility script to convert OCP docs from adoc to plain text."""
-
 import argparse
 import os
 import subprocess
